@@ -4,14 +4,16 @@ using FatKiller.Data.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FatKiller.Data.Migrations
 {
     [DbContext(typeof(ProjectEntities))]
-    partial class ProjectEntitiesModelSnapshot : ModelSnapshot
+    [Migration("20180730183311_UpdateForeignKeys")]
+    partial class UpdateForeignKeys
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

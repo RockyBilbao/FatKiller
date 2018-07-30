@@ -9,12 +9,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace FatKiller.Controllers
 {
     [Route("api/[controller]")]
-    public class ProductsController : Controller
+    public class ProductController : Controller
     {
         private readonly IProductService _productService;
         private readonly IMapper _mapper;
 
-        public ProductsController(IProductService productService, IMapper mapper)
+        public ProductController(IProductService productService, IMapper mapper)
         {
             _productService = productService;
             _mapper = mapper;
@@ -26,13 +26,6 @@ namespace FatKiller.Controllers
             var products = _productService.GetAllProducts();
             return _mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(products);
         }
-
-        //[HttpGet]
-        //public async Task<IEnumerable<ProductViewModel>> GetAllAsync()
-        //{
-        //    var products = await _productService.GetAllProductsAsync();
-        //    return _mapper.Map<IEnumerable<Product>, IEnumerable<ProductViewModel>>(products);
-        //}
 
         [HttpGet("{id}")]
         public ProductViewModel GetProduct(Guid id)

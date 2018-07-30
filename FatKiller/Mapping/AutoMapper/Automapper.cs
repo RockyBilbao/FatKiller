@@ -9,6 +9,7 @@ namespace FatKiller.Mapping.Automapper
         public MappingProfile()
         {
             CreateMap<Product, ProductViewModel>();
+            CreateMap<User, UserViewModel>();
         }
     }
 }

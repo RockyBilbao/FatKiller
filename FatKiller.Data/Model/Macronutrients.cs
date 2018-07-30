@@ -15,13 +15,10 @@ namespace FatKiller.Data.Model
         [Key]
         public Guid MacronutrientsId { get; set; }
 
-        [Required]
         public double Carbohydrates { get; set; }
 
-        [Required]
         public double Protein { get; set; }
 
-        [Required]
         public double Fat { get; set; }
 
         public virtual ICollection<Product> Product { get; set; }

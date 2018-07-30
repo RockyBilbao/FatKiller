@@ -12,6 +12,7 @@ namespace FatKiller.Data.Model
         {
             DailyFoodDiary = new HashSet<DailyFoodDiary>();
         }
+
         [Key]
         [Required]
         public Guid ProductId { get; set; }
@@ -25,12 +26,11 @@ namespace FatKiller.Data.Model
         public double ProductPrice { get; set; }
 
         [ForeignKey("Macronutrients")]
-        public Guid MacronutrientsId { get; set; }
+        public Guid? MacronutrientsId { get; set; }
 
         public virtual Macronutrients Macronutrients { get; set; }
 
         public virtual ICollection<DailyFoodDiary> DailyFoodDiary { get; set; }
-
     }
 
     public enum ProductCategory
