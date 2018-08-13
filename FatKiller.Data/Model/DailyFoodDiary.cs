@@ -11,6 +11,7 @@ namespace FatKiller.Data.Model
         public DailyFoodDiary()
         {
             User = new HashSet<User>();
+            DailyFoodDiaryProduct = new HashSet<DailyFoodDiaryProduct>();
         }
 
         [Key]
@@ -24,9 +25,6 @@ namespace FatKiller.Data.Model
 
         public virtual ICollection<User> User { get; set; }
 
-        [ForeignKey("Product")]
-        public Guid? ProductId { get; set; }
-
-        public virtual Product Product { get; set; }
+        public virtual ICollection<DailyFoodDiaryProduct> DailyFoodDiaryProduct { get; set; }
     }
 }

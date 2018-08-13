@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2042
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FatKiller", "FatKiller\FatKiller.csproj", "{9EA0F238-8762-41ED-ACE6-339B857E6E5F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FatKiller", "FatKiller\FatKiller.csproj", "{9EA0F238-8762-41ED-ACE6-339B857E6E5F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FatKiller.Services", "FatKiller.Services\FatKiller.Services.csproj", "{C1D803A3-AFB8-4FFE-8A17-C9C919CD1591}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FatKiller.Services", "FatKiller.Services\FatKiller.Services.csproj", "{C1D803A3-AFB8-4FFE-8A17-C9C919CD1591}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FatKiller.Data", "FatKiller.Data\FatKiller.Data.csproj", "{85EC7931-D02C-4EF1-A8E1-0FB8B91BF2EA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FatKiller.Data", "FatKiller.Data\FatKiller.Data.csproj", "{85EC7931-D02C-4EF1-A8E1-0FB8B91BF2EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -19,6 +19,7 @@ namespace FatKiller.Data.Model
         public DateTime Day { get; set; } //TODO zmiania nazwy
 
         public virtual ICollection<DailyFoodDiary> DailyFoodDiary { get; set; }
+
     }
 
 }

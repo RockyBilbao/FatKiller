@@ -34,13 +34,9 @@ namespace FatKiller.Data.Migrations
 
                     b.Property<Guid?>("ModifyUserId");
 
-                    b.Property<Guid?>("ProductId");
-
                     b.HasKey("DailyFoodDiaryId");
 
                     b.HasIndex("DailyFoodDiaryDataId");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("DailyFoodDiary");
                 });
@@ -63,6 +59,32 @@ namespace FatKiller.Data.Migrations
                     b.HasKey("DailyFoodDiaryDataId");
 
                     b.ToTable("DailyFoodDiaryData");
+                });
+
+            modelBuilder.Entity("FatKiller.Data.Model.DailyFoodDiaryProduct", b =>
+                {
+                    b.Property<Guid>("DailyFoodDiaryProductId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime?>("CreateDate");
+
+                    b.Property<Guid?>("CreateUserId");
+
+                    b.Property<Guid?>("DailyFoodDiaryId");
+
+                    b.Property<DateTime?>("ModifyDate");
+
+                    b.Property<Guid?>("ModifyUserId");
+
+                    b.Property<Guid?>("ProductId");
+
+                    b.HasKey("DailyFoodDiaryProductId");
+
+                    b.HasIndex("DailyFoodDiaryId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("DailyFoodDiaryProduct");
                 });
 
             modelBuilder.Entity("FatKiller.Data.Model.Macronutrients", b =>
@@ -109,8 +131,6 @@ namespace FatKiller.Data.Migrations
                     b.Property<string>("ProductName");
 
                     b.Property<double>("ProductPrice");
-
-                    b.Property<double>("ProductWeight");
 
                     b.HasKey("ProductId");
 
@@ -194,9 +214,16 @@ namespace FatKiller.Data.Migrations
                     b.HasOne("FatKiller.Data.Model.DailyFoodDiaryData", "DailyFoodDiaryData")
                         .WithMany("DailyFoodDiary")
                         .HasForeignKey("DailyFoodDiaryDataId");
+                });
+
+            modelBuilder.Entity("FatKiller.Data.Model.DailyFoodDiaryProduct", b =>
+                {
+                    b.HasOne("FatKiller.Data.Model.DailyFoodDiary", "DailyFoodDiary")
+                        .WithMany("DailyFoodDiaryProduct")
+                        .HasForeignKey("DailyFoodDiaryId");
 
                     b.HasOne("FatKiller.Data.Model.Product", "Product")
-                        .WithMany("DailyFoodDiary")
+                        .WithMany("DailyFoodDiaryProduct")
                         .HasForeignKey("ProductId");
                 });
 

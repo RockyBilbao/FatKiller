@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FatKiller.Data.Migrations
 {
     [DbContext(typeof(ProjectEntities))]
-    [Migration("20180730180526_AddUserTypeTable")]
-    partial class AddUserTypeTable
+    [Migration("20180811154827_UpdateProductTable")]
+    partial class UpdateProductTable
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -30,19 +30,15 @@ namespace FatKiller.Data.Migrations
 
                     b.Property<Guid?>("CreateUserId");
 
-                    b.Property<Guid>("DailyFoodDiaryDataId");
+                    b.Property<Guid?>("DailyFoodDiaryDataId");
 
                     b.Property<DateTime?>("ModifyDate");
 
                     b.Property<Guid?>("ModifyUserId");
 
-                    b.Property<Guid>("ProductId");
-
                     b.HasKey("DailyFoodDiaryId");
 
                     b.HasIndex("DailyFoodDiaryDataId");
-
-                    b.HasIndex("ProductId");
 
                     b.ToTable("DailyFoodDiary");
                 });
@@ -65,6 +61,32 @@ namespace FatKiller.Data.Migrations
                     b.HasKey("DailyFoodDiaryDataId");
 
                     b.ToTable("DailyFoodDiaryData");
+                });
+
+            modelBuilder.Entity("FatKiller.Data.Model.DailyFoodDiaryProduct", b =>
+                {
+                    b.Property<Guid>("DailyFoodDiaryProductId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime?>("CreateDate");
+
+                    b.Property<Guid?>("CreateUserId");
+
+                    b.Property<Guid?>("DailyFoodDiaryId");
+
+                    b.Property<DateTime?>("ModifyDate");
+
+                    b.Property<Guid?>("ModifyUserId");
+
+                    b.Property<Guid?>("ProductId");
+
+                    b.HasKey("DailyFoodDiaryProductId");
+
+                    b.HasIndex("DailyFoodDiaryId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("DailyFoodDiaryProduct");
                 });
 
             modelBuilder.Entity("FatKiller.Data.Model.Macronutrients", b =>
@@ -100,7 +122,7 @@ namespace FatKiller.Data.Migrations
 
                     b.Property<Guid?>("CreateUserId");
 
-                    b.Property<Guid>("MacronutrientsId");
+                    b.Property<Guid?>("MacronutrientsId");
 
                     b.Property<DateTime?>("ModifyDate");
 
@@ -111,8 +133,6 @@ namespace FatKiller.Data.Migrations
                     b.Property<string>("ProductName");
 
                     b.Property<double>("ProductPrice");
-
-                    b.Property<double>("ProductWeight");
 
                     b.HasKey("ProductId");
 
@@ -130,21 +150,19 @@ namespace FatKiller.Data.Migrations
 
                     b.Property<Guid?>("CreateUserId");
 
-                    b.Property<Guid>("DailyFoodDiaryId");
+                    b.Property<Guid?>("DailyFoodDiaryId");
 
-                    b.Property<string>("Email")
-                        .IsRequired();
+                    b.Property<string>("Email");
 
                     b.Property<DateTime?>("ModifyDate");
 
                     b.Property<Guid?>("ModifyUserId");
 
-                    b.Property<Guid>("UserDataId");
+                    b.Property<Guid?>("UserDataId");
 
-                    b.Property<string>("UserName")
-                        .IsRequired();
+                    b.Property<string>("UserName");
 
-                    b.Property<Guid>("UserTypeId");
+                    b.Property<Guid?>("UserTypeId");
 
                     b.HasKey("UserId");
 
@@ -197,39 +215,40 @@ namespace FatKiller.Data.Migrations
                 {
                     b.HasOne("FatKiller.Data.Model.DailyFoodDiaryData", "DailyFoodDiaryData")
                         .WithMany("DailyFoodDiary")
-                        .HasForeignKey("DailyFoodDiaryDataId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("DailyFoodDiaryDataId");
+                });
+
+            modelBuilder.Entity("FatKiller.Data.Model.DailyFoodDiaryProduct", b =>
+                {
+                    b.HasOne("FatKiller.Data.Model.DailyFoodDiary", "DailyFoodDiary")
+                        .WithMany("DailyFoodDiaryProduct")
+                        .HasForeignKey("DailyFoodDiaryId");
 
                     b.HasOne("FatKiller.Data.Model.Product", "Product")
-                        .WithMany("DailyFoodDiary")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany("DailyFoodDiaryProduct")
+                        .HasForeignKey("ProductId");
                 });
 
             modelBuilder.Entity("FatKiller.Data.Model.Product", b =>
                 {
                     b.HasOne("FatKiller.Data.Model.Macronutrients", "Macronutrients")
                         .WithMany("Product")
-                        .HasForeignKey("MacronutrientsId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("MacronutrientsId");
                 });
 
             modelBuilder.Entity("FatKiller.Data.Model.User", b =>
                 {
                     b.HasOne("FatKiller.Data.Model.DailyFoodDiary", "DailyFoodDiary")
                         .WithMany("User")
-                        .HasForeignKey("DailyFoodDiaryId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("DailyFoodDiaryId");
 
                     b.HasOne("FatKiller.Data.Model.UserData", "UserData")
                         .WithMany("User")
-                        .HasForeignKey("UserDataId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserDataId");
 
                     b.HasOne("FatKiller.Data.Model.UserType", "UserType")
                         .WithMany("User")
-                        .HasForeignKey("UserTypeId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .HasForeignKey("UserTypeId");
                 });
 #pragma warning restore 612, 618
         }
